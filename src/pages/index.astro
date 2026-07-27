@@ -1,11 +1,62 @@
----
-import Welcome from '../components/Welcome.astro';
+﻿---
 import Layout from '../layouts/Layout.astro';
+export const prerender = true;
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+
+const services = [
+  {
+    title: 'Docs',
+    description: 'School notes, references\u{00A0}&\u{00A0}shared knowledge base.',
+    url: 'https://docs.cheesecakecorp.org',
+    icon: '\u{1F4DD}',
+    color: '#4a90d9',
+    bgLight: '#e8f0fa',
+  },
+  {
+    title: 'Game',
+    description: 'Our hosted game — jump in and play with the crew.',
+    url: 'https://game.cheesecakecorp.org',
+    icon: '\u{1F3AE}',
+    color: '#d94a7e',
+    bgLight: '#fae8f0',
+  },
+  {
+    title: 'Minecraft Server',
+    description: 'Our multiplayer Minecraft server. Connect and survive together.',
+    url: 'https://mc.cheesecakecorp.org',
+    icon: '\u{1F3AE}',
+    color: '#4ad97e',
+    bgLight: '#e8faee',
+  },
+  {
+    title: 'Mail',
+    description: 'Hosted on Zoho EU — our group email\u{00A0}&\u{00A0}webmail.',
+    url: 'https://mail.zoho.eu',
+    icon: '\u{1F4E7}',
+    color: '#a34ad9',
+    bgLight: '#f0e8fa',
+  },
+];
+
+const now = new Date().getFullYear();
 ---
-
 <Layout>
-	<Welcome />
+<section class='hero'>
+  <h1><span class='emoji'>&#x1F9C0;</span> Cheesecake Corp</h1>
+  <p>A group of friends sharing notes, games, servers &amp; everything in between.</p>
+</section>
+
+<section class='services'>
+  {services.map((svc) => (
+    <a href={svc.url} target='_blank' rel='noopener noreferrer' class='card' style={{ '--accent': svc.color, '--bg': svc.bgLight }}>
+      <span class='card-icon'>{svc.icon}</span>
+      <div class='card-content'>
+        <h2>{svc.title}</h2>
+        <p>{svc.description}</p>
+      </div>
+      <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'><path stroke-linecap='round' stroke-linejoin='round' d='M13 7l5 5-5 5M6 12h12'/></svg>
+    </a>
+  ))}
+</section>
 </Layout>
