@@ -58,9 +58,9 @@ import Layout from "../../layouts/Layout.astro";
   document.getElementById("copy-host")?.addEventListener("click", async () => {
     const btn = document.getElementById("copy-host");
     const text = btn?.querySelector(".btn-text");
-    const url = "";
-    if (btn){
-      const url = btn.dataset.url;
+    let url = "";
+    if (btn?.dataset.url){
+      url = btn.dataset.url;
     }
     try {
       await navigator.clipboard.writeText(url);
