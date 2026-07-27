@@ -1,4 +1,4 @@
-﻿---
+---
 export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 ---
@@ -40,8 +40,8 @@ import Layout from "../../layouts/Layout.astro";
   .content-card ul { list-style: none; padding: 0; }
   .content-card li { padding: 0.5rem 0; border-bottom: 1px solid #f0ebe4; }
   .content-card li:last-child { border-bottom: none; }
-  .copy-btn { display: inline-flex; align-items: center; gap: 0; padding: 0.75rem 1.25rem; background: var(--bg); color: var(--accent); border-radius: 10px; font-weight: 600; font-size: 1rem; transition: all 0.2s ease; cursor: pointer; border: none; width: fit-content; }
-  .copy-btn:hover { transform: translateY(-2px); background: #d8f5df; }
+  .copy-btn { display: inline-flex; align-items: center; gap: 0; padding: 0.75rem 1.25rem; background: var(--bg); color: var(--accent); border-radius: 10px; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.2s; cursor: pointer; border: none; width: fit-content; }
+  .copy-btn:hover { transform: translateY(-2px); }
   .copy-btn:active { transform: translateY(0); }
   .copy-btn.copied { background: #b6eac7; border-color: #4ad97e; }
   .copy-btn.copied .btn-text { color: #1a5c32 !important; }
