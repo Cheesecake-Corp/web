@@ -43,11 +43,9 @@ import Layout from "../../layouts/Layout.astro";
   .copy-btn { display: inline-flex; align-items: center; gap: 0; padding: 0.75rem 1.25rem; background: var(--bg); color: var(--accent); border-radius: 10px; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.2s; cursor: pointer; border: none; width: fit-content; }
   .copy-btn:hover { transform: translateY(-2px); }
   .copy-btn:active { transform: translateY(0); }
-  .copy-btn.copied { background: #b6eac7; border-color: #4ad97e; }
-  .copy-btn.copied .btn-text { color: #1a5c32 !important; }
   .copy-feedback { font-size: 0.8rem; margin-left: 0; opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
   .copy-btn.copied .copy-feedback { opacity: 1; }
-  .btn-text { margin-right: 8px; }
+  .btn-text { margin-right: 8px; text-decoration: underline; }
   .icon-copy { flex-shrink: 0; stroke: currentColor; }
   .back-link { display: inline-block; margin-top: 1rem; color: #6b6560; font-size: 0.95rem; }
   .back-link:hover { color: var(--accent); text-decoration: none; }
