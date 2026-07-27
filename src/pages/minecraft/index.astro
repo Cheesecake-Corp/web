@@ -45,8 +45,9 @@ import Layout from "../../layouts/Layout.astro";
   .copy-btn:active { transform: translateY(0); }
   .copy-feedback { font-size: 0.8rem; margin-left: 0; opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
   .copy-btn.copied .copy-feedback { opacity: 1; }
-  .btn-text { margin-right: 8px; text-decoration: underline; }
+  .btn-text { margin-right: 8px; text-decoration: underline; font-family: 'Google Sans', 'Outfit', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; }
   .btn-text:hover { text-decoration: none; }
+  .btn-text.copied { text-decoration: none; }
   .icon-copy { flex-shrink: 0; stroke: currentColor; }
   .back-link { display: inline-block; margin-top: 1rem; color: #6b6560; font-size: 0.95rem; }
   .back-link:hover { color: var(--accent); text-decoration: none; }
@@ -54,17 +55,27 @@ import Layout from "../../layouts/Layout.astro";
 </style>
 
 <script>
-  document.getElementById("copy-host").addEventListener("click", async () => {
+  document.getElementById("copy-host")?.addEventListener("click", async () => {
     const btn = document.getElementById("copy-host");
-    const url = btn.dataset.url;
+    const text = btn?.querySelector(".btn-text");
+    const url = "";
+    if (btn){
+      const url = btn.dataset.url;
+    }
     try {
       await navigator.clipboard.writeText(url);
-      btn.classList.add("copied");
-      btn.querySelector(".btn-text").textContent = "Copied!";
+      btn?.classList.add("copied");
+      text?.classList.add("copied");
+      if (text) {
+        text.textContent = "Copied!";
+      }
       setTimeout(() => {
-        btn.classList.remove("copied");
-        btn.querySelector(".btn-text").textContent = url;
-      }, 2000);
+        btn?.classList.remove("copied");
+        text?.classList.remove("copied");
+        if (text) {
+          text.textContent = url;
+        }
+      }, 1000);
     } catch (err) {
       console.error("Copy failed:", err);
     }
