@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "cheesecakecorp",
   "type": "module",
   "version": "0.0.1",
@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "npx wrangler pages publish ./dist",
     "astro": "astro"
   },
   "dependencies": {

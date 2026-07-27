@@ -1,9 +1,10 @@
-// @ts-check
+﻿// @ts-check
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 
-// https://astro.build/config
 export default defineConfig({
-    site: "https://cheesecakecorp.org",
-    base: "/",
-    trailingSlash: "ignore"
+  site: "https://cheesecakecorp.org",
+  base: "/",
+  trailingSlash: "ignore",
+  adapter: cloudflare({ imageService: true }),
 });
