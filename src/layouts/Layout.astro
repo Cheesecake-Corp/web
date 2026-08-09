@@ -14,28 +14,86 @@ import '../styles/global.css';
 </head>
 <body>
 <header>
-<a href="/" class="logo">
-<span class="logo-icon">&#x1F9C0;</span>
-<span class="logo-text">Cheesecake Corp</span>
-</a>
-<nav>
-<a href="/">Home</a>
-<a href="/docs">Docs</a>
-<a href="/game">Game</a>
-<a href="/minecraft">Minecraft</a>
-<a href="/mail">Mail</a>
-<a href="/excalidraw">Excalidraw</a>
-<a href="/gist">Gist</a>
-<a href="/glance">Glance</a>
-<a href="/affine">Affine</a>
-<a href="/zipline">Zipline</a>
-</nav>
+  <a href="/" class="logo">
+    <span class="logo-icon">&#x1F9C0;</span>
+    <span class="logo-text">Cheesecake Corp</span>
+  </a>
+
+  <!-- Desktop nav (hidden on mobile) -->
+  <nav class="desktop-nav">
+    <a href="/">Home</a>
+    <a href="/docs">Docs</a>
+    <a href="/game">Game</a>
+    <a href="/minecraft">Minecraft</a>
+    <a href="/mail">Mail</a>
+    <a href="/excalidraw">Excalidraw</a>
+    <a href="/gist">Gist</a>
+    <a href="/glance">Glance</a>
+    <a href="/immich">Immich</a>
+    <a href="/affine">Affine</a>
+    <a href="/zipline">Zipline</a>
+  </nav>
+
+  <!-- Hamburger toggle (visible on mobile) -->
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
+
+<!-- Mobile overlay nav -->
+<nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+  <a href="/game">Game</a>
+  <a href="/minecraft">Minecraft</a>
+  <a href="/mail">Mail</a>
+  <a href="/excalidraw">Excalidraw</a>
+  <a href="/gist">Gist</a>
+  <a href="/glance">Glance</a>
+  <a href="/immich">Immich</a>
+  <a href="/affine">Affine</a>
+  <a href="/zipline">Zipline</a>
+</nav>
+
 <main>
-<slot />
+  <slot />
 </main>
+
 <footer>
-<p>&copy; {(new Date().getFullYear())} Cheesecake Corp. All rights reserved.</p>
+  <p>&copy; {(new Date().getFullYear())} Cheesecake Corp. All rights reserved.</p>
 </footer>
+
+<script>
+const toggle = document.getElementById('navToggle');
+const mobileNav = document.getElementById('mobileNav');
+
+function closeMobileNav() {
+  toggle.classList.remove('active');
+  mobileNav.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  mobileNav.setAttribute('aria-hidden', 'true');
+}
+
+toggle.addEventListener('click', () => {
+  const isOpen = toggle.classList.toggle('active');
+  mobileNav.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', String(isOpen));
+  mobileNav.setAttribute('aria-hidden', String(!isOpen));
+});
+
+// Close on link click or Escape
+mobileNav.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') closeMobileNav();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMobileNav();
+});
+// Close when resizing back to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 860) closeMobileNav();
+});
+</script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-﻿/* ===== Cheesecake Corp — Global Styles ===== */
-
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Outfit:wght@400;600;700;800&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Outfit:wght@400;600;700;800&display=swap');
 
 :root {
   --font-sans: 'Google Sans', 'Outfit', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -52,8 +50,9 @@ header {
 .logo:hover { opacity: 0.8; }
 .logo-text { letter-spacing: -0.01em; }
 
-nav { display: flex; gap: 1.5rem; }
-nav a {
+/* Desktop nav */
+.desktop-nav { display: flex; gap: 1.5rem; }
+.desktop-nav a {
   color: var(--color-muted);
   text-decoration: none;
   font-size: 0.95rem;
@@ -61,9 +60,77 @@ nav a {
   border-bottom: 2px solid transparent;
   transition: color 0.18s, border-color 0.18s;
 }
-nav a:hover {
+.desktop-nav a:hover {
   color: var(--color-text);
   border-bottom-color: #d9c9b4;
+}
+
+/* Hamburger button (mobile only) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  gap: 5px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Mobile overlay */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  z-index: 20;
+}
+.mobile-nav.open {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.mobile-nav a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.9rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+  transition: color 0.18s, background 0.18s;
+}
+.mobile-nav a:hover {
+  color: var(--color-text);
+  background: rgba(0,0,0,0.03);
+}
+
+/* Hamburger animation when open */
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ---- Main Content ---- */
@@ -125,9 +192,18 @@ footer {
 }
 
 /* ---- Responsive ---- */
+@media (max-width: 860px) {
+  header { padding: 0.75rem 1rem; }
+  .desktop-nav { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-nav { display: flex; }
+}
+
+@media (max-width: 860px) and (hover: hover) {
+  /* On touch devices, keep nav closed when toggling */
+}
+
 @media (max-width: 768px) {
-  header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.75rem; }
-  nav { gap: 0.9rem; font-size: 0.88rem; }
   main { padding: 1.25rem 1rem 2rem; }
   h1 { font-size: 2rem; }
   .hero { padding: 2rem 0 1.5rem; }
