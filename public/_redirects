@@ -1,0 +1,4 @@
+/pmdp https://www.jetpunk.com/user-quizzes/2545672/pilsen-public-transport-stops
+
+/docs https://docs.cheesecakecorp.org/
+/docs/* https://docs.cheesecakecorp.org/school/:splat
